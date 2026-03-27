@@ -1,29 +1,875 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Aybüke ÇALIŞKAN</title>
- <style>
-   body {
-  background-color: #e0ebe8;
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top Secret 🔒</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+ 
+/* ============================================================
+   GLOBAL
+============================================================ */
+:root {
+  --cream: #faf6f0;
+  --olive: #5c6b3a;
+  --olive-light: #7d8f51;
+  --terracotta: #c4623a;
+  --terracotta-light: #e8896a;
+  --sand: #d4b896;
+  --sand-light: #ede0ce;
+  --charcoal: #2c2c2c;
+  --muted: #7a7060;
+  --her: #7d4f6e;
+  --her-light: #f3e8ef;
+  --him: #3a5f8a;
+  --him-light: #e4edf6;
+  --both: #5c6b3a;
+  --both-light: #eef2e6;
+  --pumpkin: #c47b2b;
+  --pumpkin-light: #fdf0e0;
 }
-   
-   h1 {
-   font-size: 150px;
-  color: #4ab19a;
-   }
-   
-    </style>
-
-  </head>
-  <body>
-
-    <center>
-      <br><br><br><br><br><br><br><br>
-      <h1> Coming Soon </h1>
-    </center>
-
-
-
-  </body>
+ 
+* { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+ 
+/* ============================================================
+   LOGIN SCREEN
+============================================================ */
+#login-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--charcoal);
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+}
+ 
+#login-screen::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 0;
+}
+ 
+.login-box {
+  position: relative;
+  z-index: 1;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+}
+ 
+.login-lock {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+  display: block;
+  animation: sway 3s ease-in-out infinite;
+}
+ 
+@keyframes sway {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+ 
+.login-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.1rem;
+  color: white;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+ 
+.login-subtitle {
+  color: rgba(255,255,255,0.42);
+  font-size: 0.84rem;
+  font-weight: 300;
+  margin-bottom: 36px;
+  font-style: italic;
+}
+ 
+.login-label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--sand);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+ 
+.login-input-wrap {
+  position: relative;
+  margin-bottom: 14px;
+}
+ 
+.login-input {
+  width: 100%;
+  padding: 16px 52px 16px 22px;
+  background: rgba(255,255,255,0.07);
+  border: 1.5px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.18em;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.25s, background 0.25s;
+  caret-color: var(--sand);
+}
+ 
+.login-input::placeholder {
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.06em;
+  font-size: 0.88rem;
+}
+ 
+.login-input:focus {
+  border-color: var(--sand);
+  background: rgba(255,255,255,0.1);
+}
+ 
+.login-input.shake {
+  animation: shake 0.45s ease;
+  border-color: var(--terracotta) !important;
+}
+ 
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-8px); }
+  80% { transform: translateX(8px); }
+}
+ 
+.eye-toggle {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.3);
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px;
+  transition: color 0.2s;
+}
+.eye-toggle:hover { color: rgba(255,255,255,0.65); }
+ 
+.login-error {
+  color: var(--terracotta-light);
+  font-size: 0.82rem;
+  font-style: italic;
+  min-height: 22px;
+  margin-bottom: 10px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.login-error.visible { opacity: 1; }
+ 
+.login-btn {
+  width: 100%;
+  padding: 15px;
+  background: var(--terracotta);
+  border: none;
+  border-radius: 14px;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-bottom: 22px;
+}
+.login-btn:hover { background: var(--terracotta-light); transform: translateY(-1px); }
+.login-btn:active { transform: translateY(0); }
+ 
+.login-hint {
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.2);
+  font-size: 0.74rem;
+  line-height: 1.65;
+  font-style: italic;
+}
+.login-hint strong { color: rgba(255,255,255,0.35); font-style: normal; }
+ 
+.login-screen-fade { animation: fadeOut 0.65s ease forwards; }
+@keyframes fadeOut { to { opacity: 0; pointer-events: none; } }
+ 
+/* ============================================================
+   MAIN CONTENT
+============================================================ */
+#main-content { display: none; opacity: 0; animation: fadeIn 0.8s ease 0.2s forwards; }
+#main-content.visible { display: block; }
+@keyframes fadeIn { to { opacity: 1; } }
+ 
+/* ============================================================
+   NAV
+============================================================ */
+.toc {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--charcoal); color: white;
+  display: flex; overflow-x: auto; padding: 0 24px;
+  scrollbar-width: none;
+}
+.toc::-webkit-scrollbar { display: none; }
+.toc a {
+  color: rgba(255,255,255,0.62); text-decoration: none;
+  font-size: 0.7rem; letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 12px 13px; white-space: nowrap;
+  border-bottom: 2px solid transparent; transition: all 0.2s;
+}
+.toc a:hover { color: white; border-bottom-color: var(--sand); }
+ 
+/* ============================================================
+   PAGE
+============================================================ */
+.page { max-width: 980px; margin: 0 auto; padding: 40px 24px 60px; }
+ 
+.header { text-align: center; padding: 48px 0 36px; border-bottom: 2px solid var(--sand); margin-bottom: 40px; }
+.header::before { content: '🌿'; font-size: 28px; display: block; margin-bottom: 12px; }
+.header h1 { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--olive); line-height: 1.2; margin-bottom: 8px; }
+.header .subtitle { color: var(--muted); font-weight: 300; font-size: 0.95rem; letter-spacing: 0.04em; }
+.header .wedding-tag { display: inline-block; margin-top: 14px; background: var(--terracotta); color: white; padding: 5px 18px; border-radius: 20px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; }
+.version-tag { display: inline-block; margin-top: 8px; margin-left: 8px; background: var(--olive); color: white; padding: 3px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; }
+ 
+.section-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--charcoal); margin: 48px 0 20px; padding-bottom: 10px; border-bottom: 1.5px solid var(--sand-light); display: flex; align-items: center; gap: 10px; }
+ 
+.calorie-box { background: linear-gradient(135deg,#f7f2ea,#eef2e6); border: 1px solid var(--sand); border-radius: 14px; padding: 24px; margin-bottom: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.calorie-person { display: flex; flex-direction: column; gap: 8px; }
+.calorie-person h4 { font-family: 'Playfair Display', serif; font-size: 1rem; }
+.calorie-range { font-size: 1.6rem; font-weight: 700; font-family: 'Playfair Display', serif; }
+.calorie-range.her { color: var(--her); }
+.calorie-range.him { color: var(--him); }
+.calorie-detail { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+.calorie-tip { grid-column:1/-1; background: white; border-radius: 10px; padding: 14px; font-size: 0.82rem; color: var(--muted); line-height: 1.6; border-left: 3px solid var(--olive); }
+ 
+.legend { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 28px; padding: 14px 20px; background: white; border-radius: 12px; border: 1px solid var(--sand-light); font-size: 0.82rem; }
+.legend-title { font-weight: 500; color: var(--muted); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.legend-item { display: flex; align-items: center; gap: 7px; }
+.dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+.dot.her { background: var(--her); }
+.dot.him { background: var(--him); }
+.dot.both { background: var(--both); }
+ 
+.prep-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 14px; margin-bottom: 16px; }
+.prep-card { background: white; border-radius: 12px; padding: 16px; border: 1px solid var(--sand-light); border-top: 3px solid var(--olive-light); }
+.prep-card .step-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--sand); font-weight: 700; line-height: 1; margin-bottom: 6px; }
+.prep-card h4 { font-size: 0.82rem; font-weight: 600; color: var(--olive); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+.prep-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+.prep-card .time-badge { display: inline-block; margin-top: 8px; background: var(--both-light); color: var(--olive); font-size: 0.72rem; padding: 2px 10px; border-radius: 10px; font-weight: 500; }
+ 
+.week-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 48px; }
+.day-row { background: white; border-radius: 14px; border: 1px solid var(--sand-light); overflow: hidden; display: grid; grid-template-columns: 95px 1fr 1fr 1fr; }
+.day-label { background: var(--olive); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 8px; text-align: center; }
+.day-label .day-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; }
+.day-label .day-note { font-size: 0.67rem; opacity: 0.75; margin-top: 2px; }
+.day-cell { padding: 13px 15px; border-left: 1px solid var(--sand-light); }
+.cell-label { font-size: 0.67rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 5px; }
+.meal-name { font-size: 0.86rem; font-weight: 600; color: var(--charcoal); margin-bottom: 5px; line-height: 1.3; }
+.note-inline { font-size: 0.74rem; color: var(--muted); font-style: italic; margin-top: 4px; line-height: 1.4; }
+.meal-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+.tag { font-size: 0.67rem; padding: 2px 8px; border-radius: 8px; font-weight: 600; }
+.tag.her { background: var(--her-light); color: var(--her); }
+.tag.him { background: var(--him-light); color: var(--him); }
+.tag.both { background: var(--both-light); color: var(--olive); }
+.tag.optional { background: #f0f0f0; color: #888; }
+.tag.prep { background: #fff3e0; color: #b35c00; }
+.tag.pumpkin { background: var(--pumpkin-light); color: var(--pumpkin); }
+.tag.gyoza { background: #f0f0f8; color: #555; }
+ 
+.recipes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 20px; margin-bottom: 16px; }
+.recipe-card { background: white; border-radius: 14px; border: 1px solid var(--sand-light); overflow: hidden; }
+.recipe-header { padding: 16px 18px 12px; border-bottom: 1px solid var(--sand-light); }
+.recipe-emoji { font-size: 1.6rem; margin-bottom: 6px; display: block; }
+.recipe-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--charcoal); line-height: 1.3; margin-bottom: 4px; }
+.recipe-for { font-size: 0.72rem; color: var(--muted); font-style: italic; }
+.recipe-body { padding: 14px 18px; }
+.ingr-list { list-style: none; margin-bottom: 12px; }
+.ingr-list li { font-size: 0.78rem; padding: 4px 0; border-bottom: 1px solid #f5f5f5; display: flex; justify-content: space-between; gap: 8px; }
+.ingr-list li:last-child { border-bottom: none; }
+.ingr-qty { color: var(--muted); white-space: nowrap; }
+.recipe-steps { list-style: none; }
+.recipe-steps li { font-size: 0.8rem; color: var(--charcoal); padding: 7px 0; border-bottom: 1px solid #f5f0ea; display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: baseline; line-height: 1.45; }
+.recipe-steps li:last-child { border-bottom: none; }
+.recipe-steps li .sn { font-weight: 700; color: var(--sand); font-family: 'Playfair Display', serif; font-size: 0.9rem; }
+.recipe-note { background: var(--both-light); border-radius: 8px; padding: 10px 12px; font-size: 0.76rem; color: var(--olive); line-height: 1.5; margin-top: 10px; }
+.recipe-kcal { display: inline-block; margin-top: 10px; background: #f5f0ea; color: var(--muted); font-size: 0.72rem; padding: 3px 10px; border-radius: 8px; font-weight: 600; }
+ 
+.snack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr)); gap: 16px; margin-bottom: 48px; }
+.snack-card { background: white; border-radius: 12px; border: 1px solid var(--sand-light); padding: 16px; }
+.snack-card .emoji { font-size: 1.5rem; margin-bottom: 6px; display: block; }
+.snack-card h4 { font-size: 0.84rem; font-weight: 600; margin-bottom: 5px; }
+.snack-card p { font-size: 0.77rem; color: var(--muted); line-height: 1.45; }
+.snack-card .for-badge { display: inline-block; margin-top: 8px; font-size: 0.68rem; padding: 2px 9px; border-radius: 8px; font-weight: 600; }
+.snack-card .for-badge.her { background: var(--her-light); color: var(--her); }
+.snack-card .for-badge.him { background: var(--him-light); color: var(--him); }
+.snack-card .for-badge.both { background: var(--both-light); color: var(--olive); }
+ 
+.ritual-box { background: linear-gradient(135deg,#2c2c2c,#3d3530); border-radius: 14px; padding: 24px 28px; color: white; margin-bottom: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.ritual-person h4 { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 8px; }
+.ritual-person p { font-size: 0.8rem; color: rgba(255,255,255,0.72); line-height: 1.55; }
+.ritual-person .kcal-tag { display: inline-block; margin-top: 8px; background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); font-size: 0.72rem; padding: 3px 10px; border-radius: 8px; }
+ 
+.shopping-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(265px,1fr)); gap: 18px; margin-bottom: 48px; }
+.shop-category { background: white; border-radius: 14px; border: 1px solid var(--sand-light); overflow: hidden; }
+.shop-cat-header { padding: 11px 16px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: center; gap: 8px; }
+.shop-cat-header.produce { background: #f0f7ec; color: #3d6e2a; }
+.shop-cat-header.protein { background: #fef0ea; color: #c4623a; }
+.shop-cat-header.dairy { background: #f0f4fb; color: #3a5f8a; }
+.shop-cat-header.pantry { background: #f7f3f0; color: #7a5c3a; }
+.shop-cat-header.spices { background: #fdf6e0; color: #9a7010; }
+.shop-cat-header.budget { background: #eef2e6; color: #3d5c1a; }
+.shop-items { padding: 10px 16px; list-style: none; }
+.shop-items li { padding: 5px 0; border-bottom: 1px solid #f5f5f5; font-size: 0.82rem; display: flex; align-items: flex-start; gap: 8px; }
+.shop-items li:last-child { border-bottom: none; }
+.shop-items li::before { content: '☐'; color: var(--sand); flex-shrink: 0; margin-top: 1px; }
+.shop-qty { color: var(--muted); font-size: 0.76rem; white-space: nowrap; }
+.shop-note { color: var(--terracotta); font-size: 0.7rem; font-style: italic; }
+.new-item { color: var(--her); font-weight: 600; font-size: 0.68rem; margin-left: 4px; }
+ 
+.footer { text-align: center; padding-top: 32px; border-top: 1px solid var(--sand-light); color: var(--muted); font-size: 0.78rem; font-style: italic; }
+ 
+@media (max-width: 680px) {
+  .day-row { grid-template-columns: 70px 1fr 1fr; }
+  .day-row .day-cell:nth-child(4) { display: none; }
+  .calorie-box, .ritual-box { grid-template-columns: 1fr; }
+  .header h1 { font-size: 1.8rem; }
+}
+@media print {
+  #login-screen { display: none !important; }
+  .toc { display: none; }
+  .day-row, .shop-category { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+ 
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-box">
+    <span class="login-lock">🔒</span>
+    <h1 class="login-title">Absolutely Nothing<br>To See Here</h1>
+    <p class="login-subtitle">This is a perfectly normal website with no secret information whatsoever.</p>
+    <label class="login-label" for="pwd">Authorised Personnel Only</label>
+    <div class="login-input-wrap">
+      <input type="password" id="pwd" class="login-input" placeholder="enter password…" autocomplete="off" spellcheck="false" />
+      <button class="eye-toggle" onclick="toggleEye()" id="eye-btn">👁️</button>
+    </div>
+    <div class="login-error" id="login-error">That is incorrect. You should be ashamed.</div>
+    <button class="login-btn" onclick="checkPassword()">🔓 Let Me In</button>
+    <div class="login-hint">
+      <strong>Hint:</strong> If you don't know the password,<br>you probably weren't meant to find this.
+    </div>
+  </div>
+</div>
+ 
+<!-- MAIN CONTENT -->
+<div id="main-content">
+ 
+  <nav class="toc">
+    <a href="#targets">Targets</a>
+    <a href="#prep">Sunday Prep</a>
+    <a href="#plan">Week Plan</a>
+    <a href="#recipes">Recipes</a>
+    <a href="#snacks">Snacks</a>
+    <a href="#evening">Evening</a>
+    <a href="#shopping">Shopping</a>
+  </nav>
+ 
+  <div class="page">
+ 
+    <div class="header">
+      <h1>Weekly Meal Prep Plan</h1>
+      <div class="subtitle">High-protein · High-fibre · Calorie-deficit · Freezer-friendly</div>
+      <div class="wedding-tag">💍 5 Months to the Wedding — You've Got This</div>
+      <span class="version-tag">v2 · Updated</span>
+    </div>
+ 
+    <div id="targets"></div>
+    <div class="section-title">🎯 Calorie Targets</div>
+    <div class="calorie-box">
+      <div class="calorie-person">
+        <h4>Her (95 kg → ~72 kg goal)</h4>
+        <div class="calorie-range her">1,400 – 1,550</div>
+        <div class="calorie-detail">kcal/day · ~2 meals + 1 snack<br>Aim for 0.8–1 kg loss/week<br>Less dairy · Goat cheese ✓ · Lamb ✓ · No shelled seafood · No red meat (except lamb) · Pumpkin over sweet potato ✓</div>
+      </div>
+      <div class="calorie-person">
+        <h4>Rory (105 kg → ~82 kg goal)</h4>
+        <div class="calorie-range him">1,800 – 2,000</div>
+        <div class="calorie-detail">kcal/day · ~2 meals + 1 snack<br>Aim for 0.8–1 kg loss/week<br>No mushy textures · Full variety ✓ · Crispy preferred · Glass of milk in the evening ✓</div>
+      </div>
+      <div class="calorie-tip">💡 <strong>Key principle:</strong> Every meal leads with protein (chicken, eggs, legumes, lamb) and fibre (bulgur, lentils, pumpkin, veg). This keeps you both full for 4–6 hours, making the calorie deficit feel natural rather than painful.</div>
+    </div>
+ 
+    <div class="legend">
+      <span class="legend-title">Key:</span>
+      <div class="legend-item"><span class="dot her"></span> Her variation</div>
+      <div class="legend-item"><span class="dot him"></span> Rory's variation</div>
+      <div class="legend-item"><span class="dot both"></span> Same for both</div>
+      <div class="legend-item">🔄 Reheated from prep</div>
+      <div class="legend-item">✨ Optional 3rd meal</div>
+      <div class="legend-item">🎃 Pumpkin swap</div>
+      <div class="legend-item">🥟 Gyoza night</div>
+    </div>
+ 
+    <div id="prep"></div>
+    <div class="section-title">🥄 Sunday Prep Schedule (~3.5–4 hrs)</div>
+    <div class="prep-grid">
+      <div class="prep-card"><div class="step-num">01</div><h4>Oven · Chicken Thigh Block</h4><p>2.5 kg in oven bag. 180°C fan. Reserve every drop of juice for the rice.</p><span class="time-badge">90 min · hands-off</span></div>
+      <div class="prep-card"><div class="step-num">02</div><h4>Oven · 2 Whole Chickens</h4><p>Olive oil, garlic, paprika, lemon zest. Carve one (Rory — texture intact), shred the other.</p><span class="time-badge">75–90 min</span></div>
+      <div class="prep-card"><div class="step-num">03</div><h4>AutoCooker · Rice</h4><p>All thigh juices + broth topped up. Full batch. Portion when done.</p><span class="time-badge">30 min · hands-off</span></div>
+      <div class="prep-card"><div class="step-num">04</div><h4>Burner 1 · Red Lentil Soup</h4><p>Red lentils + onion + garlic + cumin + tomatoes + broth. Simmer 25 min. 4 containers.</p><span class="time-badge">30 min</span></div>
+      <div class="prep-card"><div class="step-num">05</div><h4>Burner 2 · Chickpeas</h4><p>Heat canned chickpeas with cumin, olive oil, salt. Reserve for bowls and curry.</p><span class="time-badge">20 min</span></div>
+      <div class="prep-card"><div class="step-num">06</div><h4>Air Fryer · Roasted Veg + Pumpkin</h4><p>Peppers + zucchini + tomatoes + diced pumpkin. 200°C, 20 min batches. Za'atar + olive oil.</p><span class="time-badge">40 min total</span></div>
+      <div class="prep-card"><div class="step-num">07</div><h4>Oats Jars</h4><p>5 blueberry-almond + 4 chocolate-cacao jars. Into fridge before bed Sunday night.</p><span class="time-badge">15 min</span></div>
+      <div class="prep-card"><div class="step-num">08</div><h4>Energy Balls</h4><p>Dates + almonds + cacao + oats. Roll in coconut. 10 in fridge, freeze the rest.</p><span class="time-badge">20 min</span></div>
+      <div class="prep-card"><div class="step-num">09</div><h4>Her · Carrot Bliss Balls</h4><p>Grate carrots, blend with dates + hazelnuts + coconut butter + cinnamon. Roll, chill 1 hr. Hers only.</p><span class="time-badge">25 min + 1 hr chill</span></div>
+      <div class="prep-card"><div class="step-num">10</div><h4>Her · Avo-Cacao Puddings</h4><p>Blend avocado + cacao + coconut butter + honey. 2–3 jars. Press cling film to surface. Fridge.</p><span class="time-badge">5 min</span></div>
+    </div>
+    <p style="color:var(--muted);font-size:0.8rem;margin-bottom:48px;font-style:italic;padding-left:4px;">💡 Run steps 01–05 simultaneously. Do 06 while chickens rest. Do 07–10 while things cool. Everything portioned and in containers before dinner Sunday.</p>
+ 
+    <div id="plan"></div>
+    <div class="section-title">📅 7-Day Meal Plan</div>
+    <div class="week-grid">
+ 
+      <div class="day-row" style="background:var(--charcoal);color:white;">
+        <div style="padding:10px 14px;display:flex;align-items:center;"><span style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.6;">Day</span></div>
+        <div style="padding:10px 15px;border-left:1px solid rgba(255,255,255,0.1);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.6;">✨ Breakfast / Optional</div>
+        <div style="padding:10px 15px;border-left:1px solid rgba(255,255,255,0.1);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.6;">🕐 Meal 1 — Lunch</div>
+        <div style="padding:10px 15px;border-left:1px solid rgba(255,255,255,0.1);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.6;">🌙 Meal 2 — Dinner</div>
+      </div>
+ 
+      <div class="day-row">
+        <div class="day-label"><span class="day-name">Mon</span></div>
+        <div class="day-cell"><div class="cell-label">Optional</div><div class="meal-name">🫐 Blueberry Almond Oats</div><div class="meal-tags"><span class="tag both">both</span><span class="tag optional">optional</span><span class="tag prep">🔄 prepped</span></div></div>
+        <div class="day-cell"><div class="cell-label">Lunch</div><div class="meal-name">Chicken Thigh Rice Bowl</div><p class="note-inline">Thigh slices over flavoured rice + roasted veg. <span style="color:var(--her)">Her:</span> pumpkin side, no cheese. <span style="color:var(--him)">Rory:</span> Gouda shavings + aioli.</p><div class="meal-tags"><span class="tag prep">🔄 reheated</span><span class="tag pumpkin">🎃 her</span></div></div>
+        <div class="day-cell"><div class="cell-label">Dinner</div><div class="meal-name">Air Fryer Chicken + Roasted Pumpkin</div><p class="note-inline"><span style="color:var(--her)">Her:</span> pumpkin + green salad + goat cheese. <span style="color:var(--him)">Rory:</span> same pumpkin + extra chicken + aioli.</p><div class="meal-tags"><span class="tag prep">🔄 reheated</span><span class="tag pumpkin">🎃 swap</span></div></div>
+      </div>
+ 
+      <div class="day-row">
+        <div class="day-label"><span class="day-name">Tue</span></div>
+        <div class="day-cell"><div class="cell-label">Optional</div><div class="meal-name">🍫 Chocolate Cacao Oats</div><div class="meal-tags"><span class="tag both">both</span><span class="tag optional">optional</span><span class="tag prep">🔄 prepped</span></div></div>
+        <div class="day-cell"><div class="cell-label">Lunch</div><div class="meal-name">Red Lentil Soup + Bulgur</div><p class="note-inline">Thick and warming. Lemon + chili flakes + olive oil. <span style="color:var(--him)">Rory:</span> crusty wholegrain bread.</p><div class="meal-tags"><span class="tag prep">🔄 reheated</span></div></div>
+        <div class="day-cell"><div class="cell-label">Dinner</div><div class="meal-name">Bulgur Tabbouleh with Chicken</div><p class="note-inline">Cold bowl — bulgur, parsley, tomato, cucumber, lemon. <span style="color:var(--him)">Rory:</span> diced chicken. <span style="color:var(--her)">Her:</span> shredded chicken + goat cheese.</p><div class="meal-tags"><span class="tag her">her variation</span><span class="tag him">rory's variation</span></div></div>
+      </div>
+ 
+      <div class="day-row">
+        <div class="day-label"><span class="day-name">Wed</span><span class="day-note">midweek</span></div>
+        <div class="day-cell"><div class="cell-label">Optional</div><div class="meal-name">🫐 Blueberry Almond Oats</div><div class="meal-tags"><span class="tag both">both</span><span class="tag optional">optional</span><span class="tag prep">🔄 prepped</span></div></div>
+        <div class="day-cell"><div class="cell-label">Lunch</div><div class="meal-name">Black Bean & Avocado Rice Bowl</div><p class="note-inline">Warm rice + black beans, cumin + lime. Avocado slices. <span style="color:var(--her)">Her:</span> pumpkin side. <span style="color:var(--him)">Rory:</span> chicken + Gouda.</p><div class="meal-tags"><span class="tag prep">🔄 reheated</span><span class="tag pumpkin">🎃 her</span></div></div>
+        <div class="day-cell"><div class="cell-label">Dinner 🥟</div><div class="meal-name">Pan-Fried Gyoza + Asian Dipping Salad</div><p class="note-inline">Crispy-bottomed gyozas, soy-ginger sauce. <span style="color:var(--her)">Her:</span> 6–7 gyozas + big salad. <span style="color:var(--him)">Rory:</span> 9–10 + rice. 20 min total.</p><div class="meal-tags"><span class="tag gyoza">🥟 gyoza night</span></div></div>
+      </div>
+ 
+      <div class="day-row">
+        <div class="day-label"><span class="day-name">Thu</span></div>
+        <div class="day-cell"><div class="cell-label">Optional</div><div class="meal-name">🍫 Chocolate Cacao Oats</div><div class="meal-tags"><span class="tag both">both</span><span class="tag optional">optional</span><span class="tag prep">🔄 prepped</span></div></div>
+        <div class="day-cell"><div class="cell-label">Lunch</div><div class="meal-name">Chickpea & Spinach Stew</div><p class="note-inline">Chickpeas + tomatoes + garlic + cumin + turmeric + spinach. <span style="color:var(--her)">Her:</span> goat yogurt swirl. <span style="color:var(--him)">Rory:</span> pita for dipping.</p><div class="meal-tags"><span class="tag prep">🔄 reheated</span></div></div>
+        <div class="day-cell"><div class="cell-label">Dinner</div><div class="meal-name">Lamb Steaks (Her) / Crispy Thighs (Rory)</div><p class="note-inline"><span style="color:var(--her)">Her:</span> lamb + roasted pumpkin + yogurt. <span style="color:var(--him)">Rory:</span> skin-on thighs crispy + roasted veg + mustard.</p><div class="meal-tags"><span class="tag her">her: lamb</span><span class="tag him">rory: chicken</span><span class="tag pumpkin">🎃 her side</span></div></div>
+      </div>
+ 
+      <div class="day-row">
+        <div class="day-label"><span class="day-name">Fri</span></div>
+        <div class="day-cell"><div class="cell-label">Optional</div><div class="meal-name">🫐 Blueberry Almond Oats</div><div class="meal-tags"><span class="tag both">both</span><span class="tag optional">optional</span><span class="tag prep">🔄 prepped</span></div></div>
+        <div class="day-cell"><div class="cell-label">Lunch</div><div class="meal-name">Shredded Chicken & Chickpea Power Bowl</div><p class="note-inline">Bulgur + chicken + chickpeas + cucumber + cherry tomatoes + lemon tahini. Eat cold or warm.</p><div class="meal-tags"><span class="tag prep">🔄 reheated</span></div></div>
+        <div class="day-cell"><div class="cell-label">Dinner</div><div class="meal-name">Chickpea Curry with Rice</div><p class="note-inline">Ginger + garlic + cumin + turmeric tomato sauce over prepped rice. <span style="color:var(--her)">Her:</span> no cream, pumpkin side. <span style="color:var(--him)">Rory:</span> splash of cream.</p><div class="meal-tags"><span class="tag prep">🔄 reheated</span><span class="tag pumpkin">🎃 her</span></div></div>
+      </div>
+ 
+      <div class="day-row">
+        <div class="day-label" style="background:var(--terracotta);"><span class="day-name">Sat</span><span class="day-note">lighter</span></div>
+        <div class="day-cell"><div class="cell-label">Brunch</div><div class="meal-name">🥑 Avocado Toast + Poached Eggs</div><p class="note-inline">2 eggs each on wholegrain toast. <span style="color:var(--her)">Her:</span> goat cheese + chili. <span style="color:var(--him)">Rory:</span> Gouda + smoked paprika.</p><div class="meal-tags"><span class="tag her">her variation</span><span class="tag him">rory's variation</span></div></div>
+        <div class="day-cell"><div class="cell-label">Dinner</div><div class="meal-name">Lamb Bowl (Her) / Chicken + Bulgur (Rory)</div><p class="note-inline"><span style="color:var(--her)">Her:</span> lamb strips + bulgur + pumpkin + tahini. <span style="color:var(--him)">Rory:</span> carved chicken + bulgur + tahini.</p><div class="meal-tags"><span class="tag her">her variation</span><span class="tag him">rory's variation</span></div></div>
+        <div class="day-cell"><div class="cell-label">Sweet treat</div><div class="meal-name">🍌 Banana Nice Cream + Snacks</div><p class="note-inline">Blend 2 frozen bananas + cacao. <span style="color:var(--her)">Her:</span> + avo-cacao pudding jar. 2 energy balls each.</p><div class="meal-tags"><span class="tag both">treat evening</span></div></div>
+      </div>
+ 
+      <div class="day-row">
+        <div class="day-label" style="background:var(--charcoal);"><span class="day-name">Sun</span><span class="day-note">prep day</span></div>
+        <div class="day-cell"><div class="cell-label">Morning</div><div class="meal-name">🍫 Last chocolate oat jars</div><div class="meal-tags"><span class="tag prep">🔄 prepped</span></div></div>
+        <div class="day-cell"><div class="cell-label">Lunch</div><div class="meal-name">Leftovers Bowl — use it up</div><p class="note-inline">Whatever's left. Season differently — harissa or soy + sesame to feel fresh.</p><div class="meal-tags"><span class="tag both">use it up</span></div></div>
+        <div class="day-cell"><div class="cell-label">Evening</div><div class="meal-name">Light — First bowl from new batch</div><p class="note-inline">Lentil soup or eggs. New prep is done. Tomorrow is Monday and you're already ahead.</p><div class="meal-tags"><span class="tag both">both</span></div></div>
+      </div>
+ 
+    </div>
+ 
+    <div id="recipes"></div>
+    <div class="section-title">📖 Key Recipes</div>
+    <div class="recipes-grid">
+ 
+      <div class="recipe-card">
+        <div class="recipe-header"><span class="recipe-emoji">🫐</span><div class="recipe-title">Blueberry Almond Overnight Oats</div><div class="recipe-for">Both · 5 jars · Prep Sunday</div></div>
+        <div class="recipe-body">
+          <ul class="ingr-list">
+            <li><span>Rolled oats</span><span class="ingr-qty">240g</span></li>
+            <li><span>Unsweetened almond milk</span><span class="ingr-qty">800ml</span></li>
+            <li><span>Chia seeds</span><span class="ingr-qty">4 tbsp</span></li>
+            <li><span>Honey or maple syrup</span><span class="ingr-qty">2 tsp</span></li>
+            <li><span>Vanilla extract</span><span class="ingr-qty">1 tsp</span></li>
+            <li><span>Frozen blueberries</span><span class="ingr-qty">200g</span></li>
+            <li><span>Almonds (add fresh)</span><span class="ingr-qty">60g</span></li>
+            <li><span>Greek yogurt (optional)</span><span class="ingr-qty">4 tbsp</span></li>
+          </ul>
+          <ol class="recipe-steps">
+            <li><span class="sn">1</span>Mix oats, milk, chia, honey, vanilla in each jar. Stir well.</li>
+            <li><span class="sn">2</span>Add frozen blueberries on top. They swirl overnight.</li>
+            <li><span class="sn">3</span>Seal and refrigerate min 6 hrs. Keeps 4 days.</li>
+            <li><span class="sn">4</span>Add almonds fresh each morning. Eat cold from jar.</li>
+          </ol>
+          <div class="recipe-note">Her: skip yogurt, 1 tsp honey. Add 1 tbsp PB for dairy-free protein.</div>
+          <span class="recipe-kcal">~340 kcal per jar</span>
+        </div>
+      </div>
+ 
+      <div class="recipe-card">
+        <div class="recipe-header"><span class="recipe-emoji">🍫</span><div class="recipe-title">Chocolate Cacao & Peanut Butter Oats</div><div class="recipe-for">Both · 4 jars · Prep Sunday</div></div>
+        <div class="recipe-body">
+          <ul class="ingr-list">
+            <li><span>Rolled oats</span><span class="ingr-qty">240g</span></li>
+            <li><span>Almond milk</span><span class="ingr-qty">800ml</span></li>
+            <li><span>Chia seeds</span><span class="ingr-qty">4 tbsp</span></li>
+            <li><span>Raw cacao powder</span><span class="ingr-qty">4 tbsp</span></li>
+            <li><span>Natural peanut butter</span><span class="ingr-qty">4 tbsp</span></li>
+            <li><span>Honey or maple syrup</span><span class="ingr-qty">4 tsp</span></li>
+            <li><span>Banana, sliced (add fresh)</span><span class="ingr-qty">2</span></li>
+            <li><span>Dark choc 70%+ shaved (add fresh)</span><span class="ingr-qty">20g</span></li>
+          </ul>
+          <ol class="recipe-steps">
+            <li><span class="sn">1</span>Whisk oats, milk, chia, cacao, honey per jar. Stir vigorously — cacao clumps.</li>
+            <li><span class="sn">2</span>Swirl PB partially — leave streaks for richness pockets.</li>
+            <li><span class="sn">3</span>Refrigerate min 6 hrs. Keeps 4 days.</li>
+            <li><span class="sn">4</span>Top with fresh banana + dark chocolate shavings.</li>
+          </ol>
+          <div class="recipe-note">More filling due to PB — great standalone on a 2-meal day.</div>
+          <span class="recipe-kcal">~420 kcal per jar</span>
+        </div>
+      </div>
+ 
+      <div class="recipe-card">
+        <div class="recipe-header"><span class="recipe-emoji">🥑</span><div class="recipe-title">Avocado Cacao Coconut Butter Pudding</div><div class="recipe-for">Her only · 1–3 portions · 5 min · No cooking</div></div>
+        <div class="recipe-body">
+          <ul class="ingr-list">
+            <li><span>Ripe avocado (large)</span><span class="ingr-qty">1</span></li>
+            <li><span>Raw cacao powder</span><span class="ingr-qty">2 tbsp</span></li>
+            <li><span>Coconut butter (not oil!)</span><span class="ingr-qty">1 tbsp</span></li>
+            <li><span>Honey or maple syrup</span><span class="ingr-qty">1 tsp</span></li>
+            <li><span>Vanilla extract</span><span class="ingr-qty">½ tsp</span></li>
+            <li><span>Pinch of sea salt</span><span class="ingr-qty">1 pinch</span></li>
+            <li><span>Almond milk (to loosen)</span><span class="ingr-qty">1 tbsp if needed</span></li>
+            <li><span>Cacao nibs or choc shavings (topping)</span><span class="ingr-qty">1 tsp</span></li>
+          </ul>
+          <ol class="recipe-steps">
+            <li><span class="sn">1</span>Blend everything smooth — 30 seconds.</li>
+            <li><span class="sn">2</span>Taste and adjust. The salt amplifies chocolate — don't skip it.</li>
+            <li><span class="sn">3</span>Eat now (mousse) or chill 30 min (firmer pudding). Top with shavings.</li>
+          </ol>
+          <div class="recipe-note">Make 2–3 jars on Sunday. Press cling film to surface to prevent browning. Lasts 2 days — improves overnight.</div>
+          <span class="recipe-kcal">~260 kcal per portion</span>
+        </div>
+      </div>
+ 
+      <div class="recipe-card">
+        <div class="recipe-header"><span class="recipe-emoji">🥕</span><div class="recipe-title">Carrot, Coconut & Hazelnut Bliss Balls</div><div class="recipe-for">Her only · ~16 balls · Inspired by the (nearly fatal) original</div></div>
+        <div class="recipe-body">
+          <ul class="ingr-list">
+            <li><span>Carrots, medium (grated)</span><span class="ingr-qty">2</span></li>
+            <li><span>Medjool dates (pitted)</span><span class="ingr-qty">120g</span></li>
+            <li><span>Desiccated coconut</span><span class="ingr-qty">60g</span></li>
+            <li><span>Hazelnuts (toasted)</span><span class="ingr-qty">80g</span></li>
+            <li><span>Coconut butter</span><span class="ingr-qty">1 tbsp</span></li>
+            <li><span>Ground cinnamon</span><span class="ingr-qty">1 tsp</span></li>
+            <li><span>Ground ginger</span><span class="ingr-qty">½ tsp</span></li>
+            <li><span>Vanilla extract</span><span class="ingr-qty">½ tsp</span></li>
+            <li><span>Coconut + crushed hazelnuts (coating)</span><span class="ingr-qty">40g</span></li>
+          </ul>
+          <ol class="recipe-steps">
+            <li><span class="sn">1</span>Grate carrots fine. Do NOT squeeze moisture — keeps them soft, not dense.</li>
+            <li><span class="sn">2</span>Toast hazelnuts in dry pan 3–4 min. Cool completely.</li>
+            <li><span class="sn">3</span>Food processor: dates + half hazelnuts + coconut + coconut butter + spices. Pulse to sticky paste.</li>
+            <li><span class="sn">4</span>Fold in grated carrot + remaining hazelnuts by hand. Chill 15 min if too wet.</li>
+            <li><span class="sn">5</span>Roll into marble-sized balls (~22g). Coat in coconut-hazelnut mix.</li>
+            <li><span class="sn">6</span>Refrigerate 1 hr to firm. Store airtight.</li>
+          </ol>
+          <div class="recipe-note">⚠️ Keep the carrot moisture — soft bite, anti-choking fix. 5 days fridge · 3 months freezer. Cinnamon + ginger support blood sugar regulation.</div>
+          <span class="recipe-kcal">~90 kcal per ball · 2 = snack</span>
+        </div>
+      </div>
+ 
+      <div class="recipe-card">
+        <div class="recipe-header"><span class="recipe-emoji">🟤</span><div class="recipe-title">Date & Cacao Energy Balls</div><div class="recipe-for">Both · ~18 balls · Prep Sunday</div></div>
+        <div class="recipe-body">
+          <ul class="ingr-list">
+            <li><span>Medjool dates (pitted)</span><span class="ingr-qty">200g</span></li>
+            <li><span>Rolled oats</span><span class="ingr-qty">100g</span></li>
+            <li><span>Almonds</span><span class="ingr-qty">80g</span></li>
+            <li><span>Raw cacao powder</span><span class="ingr-qty">2 tbsp</span></li>
+            <li><span>Natural peanut butter</span><span class="ingr-qty">2 tbsp</span></li>
+            <li><span>Coconut flakes (rolling)</span><span class="ingr-qty">40g</span></li>
+            <li><span>Pinch of sea salt</span><span class="ingr-qty">1 pinch</span></li>
+          </ul>
+          <ol class="recipe-steps">
+            <li><span class="sn">1</span>Soak firm dates 5–10 min. Drain.</li>
+            <li><span class="sn">2</span>Food processor: dates + almonds + cacao + PB + salt. Blitz to sticky dough.</li>
+            <li><span class="sn">3</span>Add oats, pulse 5–6 times. Keep oat texture.</li>
+            <li><span class="sn">4</span>Roll into walnut-sized balls (~25g). Coat in coconut flakes.</li>
+            <li><span class="sn">5</span>Refrigerate 30 min. Freeze half the batch.</li>
+          </ol>
+          <div class="recipe-note">Firm and satisfying — Rory approved on texture. 5 days fridge · 3 months freezer.</div>
+          <span class="recipe-kcal">~95 kcal per ball · 2 = snack</span>
+        </div>
+      </div>
+ 
+      <div class="recipe-card">
+        <div class="recipe-header"><span class="recipe-emoji">🥟</span><div class="recipe-title">Pan-Fried Gyoza + Asian Dipping Salad</div><div class="recipe-for">Both · Wednesday dinner · 20 minutes total</div></div>
+        <div class="recipe-body">
+          <ul class="ingr-list">
+            <li><span>Frozen gyozas</span><span class="ingr-qty">16 total</span></li>
+            <li><span>Sesame or neutral oil</span><span class="ingr-qty">1 tbsp</span></li>
+            <li><span>Water (steaming)</span><span class="ingr-qty">80ml</span></li>
+            <li><span>Soy sauce</span><span class="ingr-qty">3 tbsp</span></li>
+            <li><span>Rice vinegar or lemon</span><span class="ingr-qty">1 tbsp</span></li>
+            <li><span>Fresh ginger, grated</span><span class="ingr-qty">½ tsp</span></li>
+            <li><span>Chili flakes or oil</span><span class="ingr-qty">1 tsp</span></li>
+            <li><span>Cucumber (sliced thin)</span><span class="ingr-qty">1</span></li>
+            <li><span>Baby spinach or mixed leaves</span><span class="ingr-qty">60g</span></li>
+            <li><span>Sesame seeds</span><span class="ingr-qty">1 tsp</span></li>
+          </ul>
+          <ol class="recipe-steps">
+            <li><span class="sn">1</span>Mix soy, vinegar, ginger, chili for sauce. Doubles as salad dressing.</li>
+            <li><span class="sn">2</span>Oil in non-stick pan, medium-high. Gyozas flat-side down. Don't touch — 2–3 min until deeply golden.</li>
+            <li><span class="sn">3</span>Pour water carefully — it spits. Cover immediately. Steam 4–5 min.</li>
+            <li><span class="sn">4</span>Uncover 1 min to re-crisp. Slide onto plate.</li>
+            <li><span class="sn">5</span>Toss spinach + cucumber with 1 tbsp sauce. Plate alongside. Sesame on top.</li>
+          </ol>
+          <div class="recipe-note">Her: 6–7 gyozas + big salad (~350 kcal). Rory: 9–10 + rice (~520 kcal). Crispy bottoms — Rory texture approved. 👍</div>
+          <span class="recipe-kcal">~350–520 kcal depending on portion</span>
+        </div>
+      </div>
+ 
+    </div>
+ 
+    <div id="snacks"></div>
+    <div class="section-title">🍬 Full Sweet Snack Guide</div>
+    <div class="snack-grid">
+      <div class="snack-card"><span class="emoji">🥕</span><h4>Carrot Hazelnut Bliss Balls</h4><p>Warmly spiced, chewy, naturally sweet. 2 balls ~180 kcal. Prep Sunday, keeps 5 days.</p><span class="for-badge her">Her only</span></div>
+      <div class="snack-card"><span class="emoji">🥑</span><h4>Avo-Cacao Pudding</h4><p>Silky, deeply chocolatey, whole-food. 2–3 jars prep Sunday. ~260 kcal. Great evening treat.</p><span class="for-badge her">Her only</span></div>
+      <div class="snack-card"><span class="emoji">🟤</span><h4>Date & Cacao Energy Balls</h4><p>Both love these. 2 balls ~190 kcal. Freeze half. Firm, not mushy — Rory approved.</p><span class="for-badge both">Both</span></div>
+      <div class="snack-card"><span class="emoji">🍌</span><h4>Banana Nice Cream</h4><p>2 frozen bananas + 1 tbsp cacao. Blend. Thick and creamy. ~180 kcal. Coconut flakes on top.</p><span class="for-badge both">Both</span></div>
+      <div class="snack-card"><span class="emoji">🍫</span><h4>Dark Chocolate (70%+)</h4><p>2–3 squares = ~80 kcal. Rich enough that a little goes far. Evening staple — intentional and portioned.</p><span class="for-badge both">Both</span></div>
+      <div class="snack-card"><span class="emoji">🫙</span><h4>Yogurt + Honey + Almonds</h4><p>150g yogurt + 1 tsp honey + 10 almonds. ~200 kcal. Protein-rich, sweet, crunchy. Her: goat yogurt.</p><span class="for-badge both">Both</span></div>
+      <div class="snack-card"><span class="emoji">🥜</span><h4>Rice Cakes + Peanut Butter</h4><p>2 cakes + 1 tbsp PB. ~160 kcal. Crunchy and satisfying — the crisp craving buster.</p><span class="for-badge both">Both</span></div>
+      <div class="snack-card"><span class="emoji">🧊</span><h4>Frozen Mango Chunks</h4><p>Straight from freezer like sorbet. 100g = ~60 kcal. Surprisingly effective for a sweet tooth moment.</p><span class="for-badge both">Both</span></div>
+    </div>
+ 
+    <div id="evening"></div>
+    <div class="section-title">🌙 Evening Ritual</div>
+    <div class="ritual-box">
+      <div class="ritual-person">
+        <h4>🍫 Her — Dark Chocolate</h4>
+        <p>2–3 squares of 70%+ dark chocolate after dinner. Optional: pair with a small avo-cacao pudding jar if the craving hits hard. No guilt — just portion awareness and intentionality.</p>
+        <span class="kcal-tag">~80 kcal · intentional ✓</span>
+      </div>
+      <div class="ritual-person">
+        <h4>🥛 Rory — Chocolate + Milk</h4>
+        <p>Same 2–3 squares of dark chocolate plus a 200ml glass of whole milk. Casein protein supports overnight muscle recovery — which actively helps with fat loss. Keep this habit exactly as-is.</p>
+        <span class="kcal-tag">~80 + ~120 kcal = ~200 kcal · great habit ✓</span>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:0.8rem;margin-bottom:48px;font-style:italic;padding-left:4px;margin-top:12px;">💡 Make the evening ritual intentional — same time, same amount, sit down and enjoy it. Mindful consistency is more effective than avoidance.</p>
+ 
+    <div id="shopping"></div>
+    <div class="section-title">🛒 Weekly Shopping List</div>
+    <p style="color:var(--muted);font-size:0.83rem;margin-bottom:20px;">You already have: whole chickens, chicken thighs, rice, bulgur, lentils, chickpeas, black beans, gyozas. <span style="color:var(--her);font-weight:600;">★ New</span> items added in v2.</p>
+    <div class="shopping-grid">
+ 
+      <div class="shop-category">
+        <div class="shop-cat-header produce">🥦 Produce & Fresh</div>
+        <ul class="shop-items">
+          <li><span>Avocados <span class="shop-qty">× 8</span> <span class="new-item">★ +2 for pudding</span></span></li>
+          <li><span>Bananas <span class="shop-qty">× 6</span></span></li>
+          <li><span>Carrots, medium <span class="shop-qty">× 6</span> <span class="new-item">★ bliss balls + soup</span></span></li>
+          <li><span>Lemons <span class="shop-qty">× 5</span></span></li>
+          <li><span>Garlic (heads) <span class="shop-qty">× 2</span></span></li>
+          <li><span>Brown onions <span class="shop-qty">1 kg bag</span></span></li>
+          <li><span>Bell peppers, mixed <span class="shop-qty">× 5</span></span></li>
+          <li><span>Zucchini <span class="shop-qty">× 3</span></span></li>
+          <li><span>Pumpkin or butternut squash <span class="shop-qty">1 kg</span> <span class="new-item">★ replaces sweet potato</span></span></li>
+          <li><span>Cherry tomatoes <span class="shop-qty">× 2 punnets</span></span></li>
+          <li><span>Baby spinach <span class="shop-qty">200g</span></span></li>
+          <li><span>Cucumber <span class="shop-qty">× 3</span> <span class="new-item">★ +1 for gyoza salad</span></span></li>
+          <li><span>Fresh ginger <span class="shop-qty">small piece</span></span></li>
+          <li><span>Flat-leaf parsley <span class="shop-qty">1 bunch</span></span></li>
+          <li><span>Fresh cilantro <span class="shop-qty">1 bunch</span></span></li>
+          <li><span>Frozen blueberries <span class="shop-qty">500g bag</span></span></li>
+          <li><span>Frozen mango chunks <span class="shop-qty">400g · optional</span></span></li>
+        </ul>
+      </div>
+ 
+      <div class="shop-category">
+        <div class="shop-cat-header protein">🥩 Protein</div>
+        <ul class="shop-items">
+          <li><span>Eggs, free-range <span class="shop-qty">18 (3 × 6-pack)</span></span></li>
+          <li><span>Lamb shoulder or leg steaks <span class="shop-qty">600–700g</span> <span class="shop-note">her variety protein</span></span></li>
+          <li><span>Greek yogurt, full fat <span class="shop-qty">500g</span></span></li>
+          <li><span>Canned black beans <span class="shop-qty">2 × 400g</span></span></li>
+          <li><span>Canned chickpeas <span class="shop-qty">2 × 400g</span> <span class="shop-note">backup to dry</span></span></li>
+        </ul>
+      </div>
+ 
+      <div class="shop-category">
+        <div class="shop-cat-header dairy">🧀 Dairy & Alternatives</div>
+        <ul class="shop-items">
+          <li><span>Almond milk, unsweetened <span class="shop-qty">2L</span></span></li>
+          <li><span>Soft goat cheese (chèvre) <span class="shop-qty">150g</span> <span class="shop-note">her portions only</span></span></li>
+          <li><span>Gouda or Edam block <span class="shop-qty">200g</span> <span class="shop-note">Rory's portions</span></span></li>
+          <li><span>Whole milk <span class="shop-qty">1L</span> <span class="shop-note">Rory's evening glass</span></span></li>
+        </ul>
+      </div>
+ 
+      <div class="shop-category">
+        <div class="shop-cat-header pantry">🫙 Pantry Essentials</div>
+        <ul class="shop-items">
+          <li><span>Rolled oats <span class="shop-qty">1 kg</span></span></li>
+          <li><span>Chia seeds <span class="shop-qty">150g</span></span></li>
+          <li><span>Raw cacao powder <span class="shop-qty">200g</span> <span class="new-item">★ extra for pudding</span></span></li>
+          <li><span>Medjool dates <span class="shop-qty">320g total</span></span></li>
+          <li><span>Almonds, raw <span class="shop-qty">250g</span></span></li>
+          <li><span>Hazelnuts, raw <span class="shop-qty">150g</span> <span class="new-item">★ bliss balls</span></span></li>
+          <li><span>Natural peanut butter <span class="shop-qty">1 jar (340g)</span></span></li>
+          <li><span>Coconut butter <span class="shop-qty">~200g jar</span> <span class="new-item">★ pudding + bliss balls</span></span></li>
+          <li><span>Tahini <span class="shop-qty">1 small jar</span></span></li>
+          <li><span>Honey or maple syrup <span class="shop-qty">1 jar</span></span></li>
+          <li><span>Dark chocolate 70%+ <span class="shop-qty">3 × 100g bars</span> <span class="new-item">★ +1 for evening</span></span></li>
+          <li><span>Desiccated coconut <span class="shop-qty">200g</span> <span class="new-item">★ bliss balls + energy balls</span></span></li>
+          <li><span>Coconut flakes (topping) <span class="shop-qty">100g</span></span></li>
+          <li><span>Vanilla extract <span class="shop-qty">1 bottle</span></span></li>
+          <li><span>Olive oil, extra virgin <span class="shop-qty">500ml</span></span></li>
+          <li><span>Sesame oil <span class="shop-qty">small bottle</span> <span class="new-item">★ gyoza</span></span></li>
+          <li><span>Soy sauce <span class="shop-qty">1 bottle</span> <span class="new-item">★ gyoza sauce</span></span></li>
+          <li><span>Rice vinegar <span class="shop-qty">small bottle</span> <span class="new-item">★ gyoza sauce</span></span></li>
+          <li><span>Sesame seeds <span class="shop-qty">small bag</span> <span class="new-item">★ gyoza topping</span></span></li>
+          <li><span>Canned tomatoes <span class="shop-qty">4 × 400g</span></span></li>
+          <li><span>Tomato paste <span class="shop-qty">1 small can</span></span></li>
+          <li><span>Chicken or veg broth <span class="shop-qty">1L</span></span></li>
+          <li><span>Harissa paste <span class="shop-qty">optional</span></span></li>
+          <li><span>Wholegrain bread <span class="shop-qty">1 loaf</span></span></li>
+          <li><span>Wholegrain pita <span class="shop-qty">pack of 6</span></span></li>
+          <li><span>Rice cakes <span class="shop-qty">1 pack</span> <span class="new-item">★ snack</span></span></li>
+          <li><span>Oven roasting bags <span class="shop-qty">1 pack</span></span></li>
+          <li><span>Mason jars (500ml) <span class="shop-qty">for oats, if needed</span></span></li>
+          <li><span>Airtight containers <span class="shop-qty">for portioning</span></span></li>
+        </ul>
+      </div>
+ 
+      <div class="shop-category">
+        <div class="shop-cat-header spices">🌿 Spices (if not owned)</div>
+        <ul class="shop-items">
+          <li><span>Ground cumin</span></li>
+          <li><span>Smoked paprika</span></li>
+          <li><span>Ground turmeric</span></li>
+          <li><span>Ground cinnamon <span class="new-item">★ bliss balls</span></span></li>
+          <li><span>Ground ginger <span class="new-item">★ bliss balls</span></span></li>
+          <li><span>Chili flakes</span></li>
+          <li><span>Dried oregano</span></li>
+          <li><span>Za'atar blend</span></li>
+          <li><span>Ras el hanout <span class="shop-note">for lamb</span></span></li>
+          <li><span>Sea salt (flakes)</span></li>
+          <li><span>Black pepper, ground</span></li>
+        </ul>
+      </div>
+ 
+      <div class="shop-category">
+        <div class="shop-cat-header budget">📊 Budget Estimate</div>
+        <ul class="shop-items" style="padding-top:14px;">
+          <li><span>Produce & fresh <span class="shop-qty">~€24–28</span></span></li>
+          <li><span>Protein (eggs + lamb) <span class="shop-qty">~€16–20</span></span></li>
+          <li><span>Dairy & alternatives <span class="shop-qty">~€10–14</span></span></li>
+          <li><span>Pantry (first-time stocking) <span class="shop-qty">~€42–52</span></span></li>
+          <li><span>Spices (first time) <span class="shop-qty">~€10–15</span></span></li>
+          <li style="border-top:2px solid var(--sand);margin-top:8px;padding-top:8px;font-weight:700;"><span>Week 1 Total <span class="shop-qty">~€102–129</span></span></li>
+          <li style="font-size:0.74rem;color:var(--muted);font-style:italic;border:none;">Ongoing weeks: ~€60–75. Pantry items last many weeks.</li>
+          <li style="font-size:0.74rem;color:var(--olive);font-style:italic;border:none;">💡 Coconut butter: Ekoplaza, Marqt, or Asian supermarkets in Amsterdam for best price.</li>
+        </ul>
+      </div>
+ 
+    </div>
+ 
+    <div class="footer">
+      🌿 Wishing you both a wonderful, energised week — and a beautiful wedding in five months 💍<br>
+      <span style="margin-top:6px;display:block;">Meal Prep Plan · Week 1 · v2 · Amsterdam</span>
+    </div>
+ 
+  </div>
+</div>
+ 
+<script>
+  const wrongMsgs = [
+    "Nope. Try harder.",
+    "That is incorrect. You should be ashamed.",
+    "Absolutely not.",
+    "Who ARE you?",
+    "Wrong. Again.",
+    "This is embarrassing for you.",
+    "Not even close.",
+    "I'm going to need you to leave.",
+    "Seriously? No.",
+    "Access denied. Obviously.",
+  ];
+  let wrongCount = 0;
+ 
+  function checkPassword() {
+    const input = document.getElementById('pwd').value.trim().toLowerCase();
+    const errorEl = document.getElementById('login-error');
+    const inputEl = document.getElementById('pwd');
+    const screen  = document.getElementById('login-screen');
+    const main    = document.getElementById('main-content');
+ 
+    if (input === 'pervert') {
+      screen.classList.add('login-screen-fade');
+      setTimeout(() => {
+        screen.style.display = 'none';
+        main.classList.add('visible');
+      }, 650);
+    } else {
+      inputEl.classList.remove('shake');
+      void inputEl.offsetWidth;
+      inputEl.classList.add('shake');
+      errorEl.textContent = wrongMsgs[wrongCount % wrongMsgs.length];
+      errorEl.classList.add('visible');
+      wrongCount++;
+      inputEl.value = '';
+      inputEl.focus();
+    }
+  }
+ 
+  document.getElementById('pwd').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+ 
+  let shown = false;
+  function toggleEye() {
+    shown = !shown;
+    document.getElementById('pwd').type = shown ? 'text' : 'password';
+    document.getElementById('eye-btn').textContent = shown ? '🙈' : '👁️';
+  }
+</script>
+ 
+</body>
 </html>
+ 
